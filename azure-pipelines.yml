@@ -19,7 +19,7 @@ variables:
   system.debug: true
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  name: 'self-hosted'
 
 stages:
 - stage: Build
@@ -28,7 +28,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: $(vmImageName)
+      name: 'self-hosted'
 
     steps:
     - task: NodeTool@0
@@ -69,7 +69,7 @@ stages:
     displayName: Deploy
     environment: $(environmentName)
     pool:
-      vmImage: $(vmImageName)
+      name: 'self-hosted'
     strategy:
       runOnce:
         deploy:
